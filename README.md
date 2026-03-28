@@ -1,2 +1,2 @@
 # Muppuri-chamber
-A distinguished leader of the Thogata Veera Kshatriya community, Muppuri Venkata Suresh has dedicated his life to the advancement, unity, and prosperity of his people across Andhra Pradesh and beyond.  
+The Muppuri Chamber stands as a sovereign institution — a gathering place for commerce, culture, community advocacy, and generational leadership rooted in the noble traditions of the Thogata Veera Kshatriya lineage. 
