@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muppuri Chamber | Muppuri Venkata Suresh</title>
+<meta name="description" content="Muppuri Chamber — Founded by Muppuri Venkata Suresh. Thogata Veera Kshatriya community leadership, commerce, culture and heritage.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#C9A84C;--gold-light:#F0D080;--gold-bright:#FFD700;--gold-dark:#8B6914;--black:#0A0A0A;--black-deep:#050505;--white:#F8F4EC;--cream:#EFE8D5;--grey:#888;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--black-deep);color:var(--white);font-family:'Cormorant Garamond',serif;overflow-x:hidden;cursor:none;}
+  .cursor{width:12px;height:12px;border:2px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:all 0.15s ease;}
+  .cursor-trail{width:40px;height:40px;border:1px solid rgba(201,168,76,0.3);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.4s ease;}
+  #particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+  .particle{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;opacity:0;animation:floatUp linear infinite;}
+  @keyframes floatUp{0%{transform:translateY(100vh);opacity:0}10%{opacity:0.6}90%{opacity:0.2}100%{transform:translateY(-10vh) translateX(30px);opacity:0}}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;z-index:1000;padding:14px 50px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,5,0.97);border-bottom:1px solid rgba(201,168,76,0.25);backdrop-filter:blur(10px);}
+  .nav-brand{display:flex;align-items:center;gap:14px;}
+  .nav-crest-mini{width:48px;height:48px;flex-shrink:0;}
+  .nav-crest-mini svg{width:100%;height:100%;}
+  .nav-logo-main{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;letter-spacing:3px;color:var(--gold);text-transform:uppercase;line-height:1.2;display:block;}
+  .nav-logo-sub{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:2px;color:rgba(201,168,76,0.55);text-transform:uppercase;display:block;}
+  .nav-links{display:flex;gap:24px;list-style:none;}
+  .nav-links a{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color 0.3s;position:relative;}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .nav-hamburger span{display:block;width:24px;height:1px;background:var(--gold);transition:all 0.3s;}
+  .mobile-menu{display:none;position:fixed;top:77px;left:0;width:100%;background:rgba(5,5,5,0.99);border-bottom:1px solid rgba(201,168,76,0.2);z-index:999;}
+  .mobile-menu.open{display:block;}
+  .mobile-menu ul{list-style:none;}
+  .mobile-menu ul li a{display:block;padding:15px 24px;font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.08);}
+  .mobile-menu ul li a:hover{color:var(--gold);}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:130px 40px 90px;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,0.09) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(201,168,76,0.04) 0%,transparent 60%);}
+  .hero-line-l,.hero-line-r{position:absolute;top:50%;width:160px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.25;}
+  .hero-line-l{left:4%;transform:translateY(-50%);}
+  .hero-line-r{right:4%;transform:translateY(-50%);}
+
+  /* HERO LOGO — BIG & CLEAR */
+  .hero-logo-wrap{position:relative;z-index:2;margin-bottom:34px;opacity:0;animation:fadeDown 1s ease 0.3s forwards;}
+  .hero-logo-ring2{position:absolute;inset:-18px;border-radius:50%;border:1px dashed rgba(201,168,76,0.12);animation:spinR 40s linear infinite reverse;}
+  .hero-logo-ring{position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(201,168,76,0.22);animation:spinR 22s linear infinite;}
+  @keyframes spinR{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .hero-logo-disc{width:220px;height:220px;border-radius:50%;background:radial-gradient(ellipse at center,#141414 0%,#080808 100%);border:3px solid rgba(201,168,76,0.65);display:flex;align-items:center;justify-content:center;box-shadow:0 0 70px rgba(201,168,76,0.4),0 0 140px rgba(201,168,76,0.12),inset 0 0 40px rgba(0,0,0,0.6);}
+  .hero-logo-disc svg{width:200px;height:200px;filter:drop-shadow(0 0 18px rgba(201,168,76,0.75));}
+
+  .hero-eyebrow{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:8px;color:var(--gold);text-transform:uppercase;margin-bottom:18px;opacity:0;animation:fadeDown 1s ease 0.55s forwards;position:relative;z-index:2;}
+  .hero-title{font-family:'Cinzel Decorative',serif;font-size:clamp(2rem,5vw,4.5rem);font-weight:900;color:var(--gold);text-align:center;letter-spacing:3px;line-height:1.1;opacity:0;animation:fadeUp 1s ease 0.75s forwards;position:relative;z-index:2;text-shadow:0 0 40px rgba(201,168,76,0.45),0 0 90px rgba(201,168,76,0.15);}
+  .hero-name{font-family:'Cinzel',serif;font-size:clamp(0.78rem,1.8vw,1rem);letter-spacing:6px;color:var(--cream);text-transform:uppercase;margin-top:12px;opacity:0;animation:fadeUp 1s ease 0.95s forwards;position:relative;z-index:2;}
+  .hero-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2.2vw,1.35rem);color:var(--gold-light);margin-top:8px;letter-spacing:2px;opacity:0;animation:fadeUp 1s ease 1.15s forwards;position:relative;z-index:2;}
+  .hero-div{display:flex;align-items:center;gap:18px;margin:28px 0;opacity:0;animation:fadeUp 1s ease 1.35s forwards;position:relative;z-index:2;}
+  .hero-div span{width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
+  .hero-div span:last-child{background:linear-gradient(90deg,var(--gold),transparent);}
+  .diamond{width:9px;height:9px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp 1s ease 1.55s forwards;position:relative;z-index:2;}
+
+  /* BUTTONS */
+  .btn-gold{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;padding:14px 38px;background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-dark));color:var(--black);border:none;text-decoration:none;display:inline-block;transition:all 0.3s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(201,168,76,0.45);}
+  .btn-outline{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;padding:14px 38px;background:transparent;color:var(--gold);border:1px solid var(--gold);text-decoration:none;display:inline-block;transition:all 0.3s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+  .btn-outline:hover{background:rgba(201,168,76,0.09);transform:translateY(-2px);}
+  .btn-paypal{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;padding:14px 38px;background:linear-gradient(135deg,#003087,#0070ba);color:#fff;border:none;text-decoration:none;display:inline-block;transition:all 0.3s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);cursor:pointer;}
+  .btn-paypal:hover{background:linear-gradient(135deg,#002a78,#0062a3);transform:translateY(-2px);box-shadow:0 10px 40px rgba(0,48,135,0.5);}
+
+  .scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 1s ease 2s forwards;z-index:2;}
+  .scroll-hint span{font-family:'Cinzel',serif;font-size:0.53rem;letter-spacing:4px;color:var(--grey);text-transform:uppercase;}
+  .scroll-arr{width:16px;height:16px;border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(45deg);animation:bounce 1.5s infinite;}
+  @keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
+
+  /* STATS */
+  .stats-band{background:linear-gradient(135deg,rgba(201,168,76,0.1) 0%,rgba(201,168,76,0.02) 100%);border-top:1px solid rgba(201,168,76,0.3);border-bottom:1px solid rgba(201,168,76,0.3);padding:46px 60px;display:flex;justify-content:center;gap:65px;flex-wrap:wrap;position:relative;z-index:1;}
+  .stat-item{text-align:center;}
+  .stat-number{font-family:'Cinzel Decorative',serif;font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1;display:block;}
+  .stat-label{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:4px;color:var(--grey);text-transform:uppercase;margin-top:8px;display:block;}
+
+  /* SHARED SECTION STYLES */
+  section{position:relative;z-index:1;}
+  .sec-pad{padding:110px 60px;}
+  .section-header{text-align:center;margin-bottom:58px;}
+  .eyebrow{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:6px;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:13px;}
+  .sec-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.5rem,3.2vw,2.7rem);color:var(--white);font-weight:700;}
+  .sec-rule{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:16px auto 0;}
+  .sec-sub{color:#7A6A50;font-style:italic;font-size:1rem;margin-top:16px;max-width:600px;margin-left:auto;margin-right:auto;}
+
+  /* ABOUT */
+  .about-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+  .about-frame{width:100%;aspect-ratio:3/4;border:2px solid rgba(201,168,76,0.4);position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(201,168,76,0.04),transparent);}
+  .about-frame::before{content:'';position:absolute;inset:12px;border:1px solid rgba(201,168,76,0.14);}
+  .about-logo-stack{display:flex;flex-direction:column;align-items:center;gap:16px;position:relative;z-index:1;}
+  .about-logo-stack svg{width:150px;height:150px;filter:drop-shadow(0 0 22px rgba(201,168,76,0.65));}
+  .about-lname{font-family:'Cinzel Decorative',serif;font-size:1rem;color:var(--gold);letter-spacing:2px;text-align:center;}
+  .about-lsub{font-family:'Cinzel',serif;font-size:0.56rem;letter-spacing:3px;color:rgba(201,168,76,0.55);text-transform:uppercase;text-align:center;}
+  .ac{position:absolute;width:20px;height:20px;border-color:var(--gold);border-style:solid;opacity:0.8;}
+  .ac.tl{top:-2px;left:-2px;border-width:2px 0 0 2px}.ac.tr{top:-2px;right:-2px;border-width:2px 2px 0 0}.ac.bl{bottom:-2px;left:-2px;border-width:0 0 2px 2px}.ac.br{bottom:-2px;right:-2px;border-width:0 2px 2px 0}
+  .about-text h2{font-family:'Cinzel Decorative',serif;font-size:clamp(1.3rem,2.4vw,2.1rem);color:var(--gold);line-height:1.2;margin-bottom:20px;}
+  .about-text p{font-size:1.02rem;line-height:1.9;color:#BBA87A;margin-bottom:16px;}
+  .tag{display:inline-block;font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;padding:5px 13px;border:1px solid rgba(201,168,76,0.38);color:var(--gold);margin-right:7px;margin-bottom:7px;}
+
+  /* PILLARS */
+  .pillars-bg{background:linear-gradient(180deg,var(--black-deep) 0%,rgba(201,168,76,0.025) 50%,var(--black-deep) 100%);}
+  .pillars-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+  .pillar-card{padding:52px 34px;background:rgba(10,10,10,0.82);border:1px solid rgba(201,168,76,0.14);position:relative;overflow:hidden;transition:all 0.4s ease;}
+  .pillar-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.4s;}
+  .pillar-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,0.38);}
+  .pillar-card:hover::before{opacity:1;}
+  .pnum{font-family:'Cinzel Decorative',serif;font-size:3.2rem;color:rgba(201,168,76,0.07);position:absolute;top:16px;right:22px;font-weight:900;line-height:1;}
+  .picon{width:52px;height:52px;border:1px solid rgba(201,168,76,0.38);display:flex;align-items:center;justify-content:center;margin-bottom:22px;font-size:1.4rem;}
+  .ptitle{font-family:'Cinzel',serif;font-size:0.95rem;letter-spacing:2px;color:var(--gold-light);margin-bottom:12px;}
+  .pdesc{font-size:0.92rem;line-height:1.8;color:#9A8A6A;}
+
+  /* APPS */
+  .apps-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .app-card{border:1px solid rgba(201,168,76,0.18);padding:38px 28px;text-align:center;position:relative;overflow:hidden;transition:all 0.4s;}
+  .app-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 20px 60px rgba(201,168,76,0.11);}
+  .app-soon{position:absolute;top:13px;right:13px;font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:2px;color:var(--black);background:var(--gold);padding:3px 10px;text-transform:uppercase;}
+  .app-icon{width:76px;height:76px;border-radius:16px;background:linear-gradient(135deg,rgba(201,168,76,0.13),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.28);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 18px;}
+  .app-name{font-family:'Cinzel',serif;font-size:0.88rem;letter-spacing:2px;color:var(--gold-light);margin-bottom:11px;}
+  .app-desc{font-size:0.88rem;line-height:1.7;color:#7A6A50;margin-bottom:20px;}
+  .app-badge{display:inline-block;font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:3px;padding:4px 12px;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.28);color:var(--gold);text-transform:uppercase;}
+
+  /* BOOKS */
+  .books-bg{background:linear-gradient(180deg,rgba(201,168,76,0.025) 0%,var(--black-deep) 100%);}
+  .books-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .book-card{border:1px solid rgba(201,168,76,0.17);overflow:hidden;transition:all 0.4s;cursor:pointer;}
+  .book-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 20px 60px rgba(201,168,76,0.11);}
+  .book-cover{aspect-ratio:2/3;background:linear-gradient(135deg,rgba(201,168,76,0.11),rgba(5,5,5,0.92));display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;position:relative;}
+  .book-cover::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,var(--gold-dark),var(--gold),var(--gold-dark));}
+  .book-icon{font-size:2.6rem;margin-bottom:13px;}
+  .book-cover-title{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:1.5px;color:var(--gold);text-align:center;line-height:1.5;}
+  .book-info{padding:16px 14px;}
+  .book-title{font-family:'Cinzel',serif;font-size:0.76rem;letter-spacing:1px;color:var(--gold-light);margin-bottom:5px;}
+  .book-author{font-size:0.78rem;color:#7A6A50;margin-bottom:9px;}
+  .book-badge{display:inline-block;font-family:'Cinzel',serif;font-size:0.48rem;letter-spacing:2px;padding:3px 9px;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.24);color:var(--gold);text-transform:uppercase;}
+
+  /* HERITAGE */
+  .heritage-inner{max-width:840px;margin:0 auto;text-align:center;}
+  .hquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.25rem,2.7vw,1.85rem);color:var(--cream);line-height:1.8;margin:36px 0;position:relative;padding:0 38px;}
+  .hquote::before,.hquote::after{font-family:'Cinzel Decorative',serif;font-size:4.5rem;color:rgba(201,168,76,0.17);position:absolute;line-height:1;}
+  .hquote::before{content:'"';top:-8px;left:0;}
+  .hquote::after{content:'"';bottom:-36px;right:0;}
+  .hattr{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-top:48px;}
+
+  /* MEMBERSHIP */
+  .mem-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .mem-card{border:1px solid rgba(201,168,76,0.19);padding:48px 34px;text-align:center;position:relative;overflow:hidden;transition:all 0.4s;}
+  .mem-card.feat{border-color:var(--gold);background:linear-gradient(180deg,rgba(201,168,76,0.06) 0%,transparent 100%);}
+  .mem-card.feat::before{content:'PRESTIGE';font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:4px;color:var(--black);background:var(--gold);padding:5px 18px;position:absolute;top:0;left:50%;transform:translateX(-50%);}
+  .mem-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 20px 60px rgba(201,168,76,0.11);}
+  .mtier{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:17px;display:block;}
+  .mtitle{font-family:'Cinzel Decorative',serif;font-size:1.45rem;color:var(--white);margin-bottom:26px;}
+  .mfeatures{list-style:none;margin-bottom:34px;}
+  .mfeatures li{padding:8px 0;border-bottom:1px solid rgba(201,168,76,0.09);font-size:0.88rem;color:#9A8A6A;display:flex;align-items:center;justify-content:center;gap:7px;}
+  .mfeatures li::before{content:'◆';font-size:0.42rem;color:var(--gold);}
+
+  /* DONATE */
+  .donate-bg{background:linear-gradient(135deg,rgba(0,48,135,0.07) 0%,rgba(201,168,76,0.04) 100%);}
+  .donate-inner{max-width:860px;margin:0 auto;}
+  .donate-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:46px 0;}
+  .damt{border:1px solid rgba(201,168,76,0.24);padding:28px 18px;text-align:center;cursor:pointer;transition:all 0.3s;}
+  .damt:hover,.damt.sel{border-color:var(--gold);background:rgba(201,168,76,0.07);}
+  .damt .amt{font-family:'Cinzel Decorative',serif;font-size:1.8rem;color:var(--gold);}
+  .damt .alabel{font-family:'Cinzel',serif;font-size:0.57rem;letter-spacing:3px;color:var(--grey);text-transform:uppercase;margin-top:5px;}
+  .dcustom{display:none;gap:12px;align-items:center;margin-bottom:32px;}
+  .dcustom input{flex:1;background:rgba(201,168,76,0.03);border:1px solid rgba(201,168,76,0.28);padding:13px 16px;color:var(--white);font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;}
+  .dcustom input:focus{border-color:var(--gold);}
+  .paypal-center{text-align:center;margin-top:14px;}
+  .pp-badge{display:inline-flex;align-items:center;gap:8px;background:#003087;padding:7px 18px;border-radius:4px;font-family:Arial,sans-serif;font-size:1rem;font-weight:700;color:#fff;letter-spacing:-0.5px;margin-top:14px;}
+  .pp-badge .pal{color:#009cde;}
+  .pp-note{font-family:'Cinzel',serif;font-size:0.57rem;letter-spacing:2px;color:var(--grey);text-transform:uppercase;margin-top:12px;}
+  .ssl-note{display:inline-flex;align-items:center;gap:5px;font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:2px;color:#555;text-transform:uppercase;margin-top:8px;}
+
+  /* CONTACT */
+  .contact-inner{max-width:840px;margin:0 auto;}
+  .ci-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:46px;}
+  .ci-card{border:1px solid rgba(201,168,76,0.19);padding:26px 20px;text-align:center;transition:border-color 0.3s;}
+  .ci-card:hover{border-color:rgba(201,168,76,0.45);}
+  .ci-icon{font-size:1.7rem;margin-bottom:10px;}
+  .ci-label{font-family:'Cinzel',serif;font-size:0.56rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:7px;}
+  .ci-val{font-size:0.96rem;color:var(--cream);}
+  .ci-val a{color:var(--cream);text-decoration:none;transition:color 0.3s;}
+  .ci-val a:hover{color:var(--gold);}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;}
+  .form-grid .full{grid-column:1/-1;}
+  .fg{display:flex;flex-direction:column;gap:6px;}
+  .fg label{font-family:'Cinzel',serif;font-size:0.57rem;letter-spacing:3px;color:var(--gold);text-transform:uppercase;}
+  .fg input,.fg textarea,.fg select{background:rgba(201,168,76,0.03);border:1px solid rgba(201,168,76,0.21);padding:12px 15px;color:var(--white);font-family:'Cormorant Garamond',serif;font-size:0.96rem;outline:none;transition:border-color 0.3s;width:100%;}
+  .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold);}
+  .fg select option{background:#1a1a1a;}
+  .fg textarea{height:105px;resize:vertical;}
+
+  /* FOOTER */
+  footer{background:var(--black-deep);border-top:1px solid rgba(201,168,76,0.2);padding:60px 60px 38px;}
+  .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:38px;border-bottom:1px solid rgba(201,168,76,0.1);}
+  .footer-brand{display:flex;align-items:center;gap:15px;}
+  .footer-brand svg{width:60px;height:60px;}
+  .f-logo{font-family:'Cinzel Decorative',serif;font-size:1.35rem;color:var(--gold);display:block;}
+  .f-sub{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:3px;color:rgba(201,168,76,0.45);text-transform:uppercase;margin-top:3px;display:block;}
+  .fnav h4{font-family:'Cinzel',serif;font-size:0.57rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
+  .fnav ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .fnav ul a{font-family:'Cinzel',serif;font-size:0.57rem;letter-spacing:2px;color:#666;text-decoration:none;text-transform:uppercase;transition:color 0.3s;}
+  .fnav ul a:hover{color:var(--gold);}
+  .fcontact p{font-size:0.87rem;color:#666;margin-bottom:7px;}
+  .fcontact a{color:var(--gold);text-decoration:none;}
+  .footer-copy{text-align:center;padding-top:26px;font-size:0.8rem;color:#444;}
+  .footer-copy span{color:var(--gold);}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* RESPONSIVE */
+  @media(max-width:920px){
+    nav{padding:13px 18px;}
+    .nav-links{display:none;}
+    .nav-hamburger{display:flex;}
+    .about-grid{grid-template-columns:1fr;gap:36px;}
+    .pillars-grid,.apps-grid{grid-template-columns:1fr;}
+    .books-grid{grid-template-columns:repeat(2,1fr);}
+    .mem-grid{grid-template-columns:1fr;}
+    .donate-cards{grid-template-columns:1fr 1fr;}
+    .ci-row{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .form-grid .full{grid-column:1;}
+    .sec-pad{padding:70px 22px;}
+    .stats-band{padding:34px 22px;gap:32px;}
+    footer{padding:36px 22px;}
+    .footer-top{flex-direction:column;gap:28px;}
+    .hero-logo-disc{width:175px;height:175px;}
+    .hero-logo-disc svg{width:155px;height:155px;}
+  }
+  @media(max-width:480px){
+    .donate-cards{grid-template-columns:1fr;}
+    .books-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-trail" id="curT"></div>
+<div id="particles"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-crest-mini">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="rgba(201,168,76,0.85)" stroke="#C9A84C" stroke-width="0.6">
+          <ellipse cx="18" cy="50" rx="7" ry="13" transform="rotate(-18 18 50)"/>
+          <ellipse cx="12" cy="35" rx="5.5" ry="9.5" transform="rotate(-36 12 35)"/>
+          <ellipse cx="82" cy="50" rx="7" ry="13" transform="rotate(18 82 50)"/>
+          <ellipse cx="88" cy="35" rx="5.5" ry="9.5" transform="rotate(36 88 35)"/>
+        </g>
+        <path d="M32 18 L68 18 L74 72 L50 88 L26 72 Z" fill="#0D0D0D" stroke="#C9A84C" stroke-width="1.8"/>
+        <path d="M36 23 L64 23 L69 70 L50 83 L31 70 Z" fill="none" stroke="rgba(201,168,76,0.28)" stroke-width="0.8"/>
+        <polygon points="50,30 54,44 68,44 57,53 61,67 50,58 39,67 43,53 32,44 46,44" fill="#C9A84C" stroke="#FFD700" stroke-width="0.6"/>
+      </svg>
+    </div>
+    <div>
+      <span class="nav-logo-main">Muppuri Chamber</span>
+      <span class="nav-logo-sub">Thogata Veera Kshatriya · Andhra Pradesh</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#pillars">Pillars</a></li>
+    <li><a href="#apps">Apps</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#membership">Membership</a></li>
+    <li><a href="#donate">Donate</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-hamburger" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mMenu">
+  <ul>
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#pillars" onclick="closeMenu()">Pillars</a></li>
+    <li><a href="#apps" onclick="closeMenu()">Apps</a></li>
+    <li><a href="#books" onclick="closeMenu()">Books</a></li>
+    <li><a href="#membership" onclick="closeMenu()">Membership</a></li>
+    <li><a href="#donate" onclick="closeMenu()">Donate</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-line-l"></div>
+  <div class="hero-line-r"></div>
+
+  <div class="hero-logo-wrap">
+    <div class="hero-logo-ring2"></div>
+    <div class="hero-logo-ring"></div>
+    <div class="hero-logo-disc">
+      <!-- FULL DETAILED CREST SVG -->
+      <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- Top text -->
+        <text x="120" y="22" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="#C9A84C" letter-spacing="2.5">✦ MUPPURI CHAMBER ✦</text>
+        <!-- Laurel Left large -->
+        <g fill="rgba(201,168,76,0.9)" stroke="#AA8830" stroke-width="0.4">
+          <ellipse cx="38" cy="120" rx="14" ry="28" transform="rotate(-18 38 120)"/>
+          <ellipse cx="25" cy="93" rx="11.5" ry="22" transform="rotate(-36 25 93)"/>
+          <ellipse cx="18" cy="64" rx="9" ry="17" transform="rotate(-54 18 64)"/>
+          <ellipse cx="26" cy="148" rx="11.5" ry="21" transform="rotate(-3 26 148)"/>
+          <ellipse cx="22" cy="172" rx="9" ry="16" transform="rotate(13 22 172)"/>
+          <ellipse cx="28" cy="193" rx="7.5" ry="12" transform="rotate(26 28 193)"/>
+        </g>
+        <path d="M58 205 Q45 168 36 120 Q28 84 24 58" stroke="#C9A84C" stroke-width="1.6" fill="none" opacity="0.55"/>
+        <!-- Laurel Right large -->
+        <g fill="rgba(201,168,76,0.9)" stroke="#AA8830" stroke-width="0.4">
+          <ellipse cx="202" cy="120" rx="14" ry="28" transform="rotate(18 202 120)"/>
+          <ellipse cx="215" cy="93" rx="11.5" ry="22" transform="rotate(36 215 93)"/>
+          <ellipse cx="222" cy="64" rx="9" ry="17" transform="rotate(54 222 64)"/>
+          <ellipse cx="214" cy="148" rx="11.5" ry="21" transform="rotate(3 214 148)"/>
+          <ellipse cx="218" cy="172" rx="9" ry="16" transform="rotate(-13 218 172)"/>
+          <ellipse cx="212" cy="193" rx="7.5" ry="12" transform="rotate(-26 212 193)"/>
+        </g>
+        <path d="M182 205 Q195 168 204 120 Q212 84 216 58" stroke="#C9A84C" stroke-width="1.6" fill="none" opacity="0.55"/>
+        <!-- Shield outer -->
+        <path d="M72 36 L168 36 L178 158 L120 202 L62 158 Z" fill="#0A0A0A" stroke="#C9A84C" stroke-width="2.8"/>
+        <!-- Shield inner highlight -->
+        <path d="M79 44 L161 44 L169 155 L120 195 L71 155 Z" fill="none" stroke="rgba(201,168,76,0.32)" stroke-width="1.2"/>
+        <!-- Shield sheen -->
+        <path d="M82 50 L110 48 L110 195 L71 155 Z" fill="rgba(255,255,255,0.015)"/>
+        <!-- 5-pointed STAR — large clear -->
+        <polygon points="120,72 130,104 163,104 138,124 148,156 120,136 92,156 102,124 77,104 110,104"
+          fill="#C9A84C" stroke="#FFD700" stroke-width="1.2"/>
+        <!-- Star inner glow -->
+        <polygon points="120,80 128,105 155,105 134,120 142,145 120,130 98,145 106,120 85,105 112,105"
+          fill="rgba(255,220,80,0.12)"/>
+        <!-- Bottom ribbon -->
+        <rect x="64" y="197" width="112" height="24" rx="3" fill="rgba(201,168,76,0.16)" stroke="rgba(201,168,76,0.55)" stroke-width="1.2"/>
+        <text x="120" y="213" text-anchor="middle" font-family="Georgia,serif" font-size="7.8" fill="#C9A84C" letter-spacing="1.2">THOGATA VEERA KSHATRIYA</text>
+        <!-- Decorative dots -->
+        <circle cx="72" cy="209" r="2" fill="#C9A84C" opacity="0.6"/>
+        <circle cx="168" cy="209" r="2" fill="#C9A84C" opacity="0.6"/>
+      </svg>
+    </div>
+  </div>
+
+  <span class="hero-eyebrow">Est. Andhra Pradesh · India</span>
+  <h1 class="hero-title">Muppuri Chamber</h1>
+  <p class="hero-name">Muppuri Venkata Suresh</p>
+  <p class="hero-tag">Thogata Veera Kshatriya — Honour · Legacy · Leadership</p>
+
+  <div class="hero-div">
+    <span></span><div class="diamond"></div><div class="diamond" style="width:6px;height:6px;opacity:0.45"></div><div class="diamond"></div><span></span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#membership" class="btn-gold">Join the Chamber</a>
+    <a href="#donate" class="btn-paypal">💛 Donate via PayPal</a>
+    <a href="#about" class="btn-outline">Our Legacy</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Explore</span>
+    <div class="scroll-arr"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band reveal">
+  <div class="stat-item"><span class="stat-number" data-target="500">0</span><span class="stat-label">Members</span></div>
+  <div class="stat-item"><span class="stat-number" data-target="25">0</span><span class="stat-label">Years of Service</span></div>
+  <div class="stat-item"><span class="stat-number" data-target="12">0</span><span class="stat-label">Districts</span></div>
+  <div class="stat-item"><span class="stat-number" data-target="100">0</span><span class="stat-label">Initiatives</span></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-pad">
+    <div class="about-grid reveal">
+      <div style="position:relative">
+        <div class="about-frame">
+          <div class="ac tl"></div><div class="ac tr"></div><div class="ac bl"></div><div class="ac br"></div>
+          <div class="about-logo-stack">
+            <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+              <g fill="rgba(201,168,76,0.85)" stroke="#AA8830" stroke-width="0.5">
+                <ellipse cx="38" cy="120" rx="14" ry="28" transform="rotate(-18 38 120)"/>
+                <ellipse cx="25" cy="93" rx="11" ry="21" transform="rotate(-36 25 93)"/>
+                <ellipse cx="18" cy="64" rx="8.5" ry="16" transform="rotate(-54 18 64)"/>
+                <ellipse cx="26" cy="148" rx="11" ry="20" transform="rotate(-3 26 148)"/>
+                <ellipse cx="22" cy="172" rx="8.5" ry="15" transform="rotate(13 22 172)"/>
+                <ellipse cx="202" cy="120" rx="14" ry="28" transform="rotate(18 202 120)"/>
+                <ellipse cx="215" cy="93" rx="11" ry="21" transform="rotate(36 215 93)"/>
+                <ellipse cx="222" cy="64" rx="8.5" ry="16" transform="rotate(54 222 64)"/>
+                <ellipse cx="214" cy="148" rx="11" ry="20" transform="rotate(3 214 148)"/>
+                <ellipse cx="218" cy="172" rx="8.5" ry="15" transform="rotate(-13 218 172)"/>
+              </g>
+              <path d="M72 36 L168 36 L178 158 L120 202 L62 158 Z" fill="#0A0A0A" stroke="#C9A84C" stroke-width="2.5"/>
+              <path d="M79 44 L161 44 L169 155 L120 195 L71 155 Z" fill="none" stroke="rgba(201,168,76,0.28)" stroke-width="1"/>
+              <polygon points="120,72 130,104 163,104 138,124 148,156 120,136 92,156 102,124 77,104 110,104" fill="#C9A84C" stroke="#FFD700" stroke-width="1"/>
+              <rect x="64" y="197" width="112" height="22" rx="3" fill="rgba(201,168,76,0.14)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+              <text x="120" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="7.2" fill="#C9A84C" letter-spacing="1">MUPPURI CHAMBER</text>
+            </svg>
+            <div class="about-lname">Muppuri Venkata Suresh</div>
+            <div class="about-lsub">Founder &amp; President</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <h2>About the Chamber</h2>
+        <p>A distinguished leader of the Thogata Veera Kshatriya community, Muppuri Venkata Suresh has dedicated his life to the advancement, unity, and prosperity of his people across Andhra Pradesh and beyond.</p>
+        <p>The Muppuri Chamber stands as a sovereign institution — a gathering place for commerce, culture, community advocacy, and generational leadership rooted in the noble traditions of the Thogata Veera Kshatriya lineage.</p>
+        <p>Like the great societies of honour that have shaped civilisations, the Chamber operates on the founding principles of integrity, excellence, and unwavering commitment to community welfare.</p>
+        <div style="margin-top:26px">
+          <span class="tag">Community Leader</span>
+          <span class="tag">Thogata Veera Kshatriya</span>
+          <span class="tag">Andhra Pradesh</span>
+          <span class="tag">Commerce</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="sec-pad pillars-bg">
+    <div class="section-header reveal">
+      <span class="eyebrow">Foundations of the Chamber</span>
+      <h2 class="sec-title">Our Six Pillars</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="pillars-grid reveal">
+      <div class="pillar-card"><div class="pnum">I</div><div class="picon">⚖️</div><h3 class="ptitle">Justice &amp; Advocacy</h3><p class="pdesc">Championing the rights and dignity of every member through lawful advocacy, mediation, and representation.</p></div>
+      <div class="pillar-card"><div class="pnum">II</div><div class="picon">🏛️</div><h3 class="ptitle">Commerce &amp; Prosperity</h3><p class="pdesc">Fostering a thriving economic ecosystem through networking, mentorship, investment, and strategic partnerships.</p></div>
+      <div class="pillar-card"><div class="pnum">III</div><div class="picon">🎓</div><h3 class="ptitle">Education &amp; Excellence</h3><p class="pdesc">Empowering the next generation through scholarships, skill development, and educational initiatives.</p></div>
+      <div class="pillar-card"><div class="pnum">IV</div><div class="picon">🤝</div><h3 class="ptitle">Unity &amp; Brotherhood</h3><p class="pdesc">Forging unbreakable bonds across communities, districts, and generations under one proud banner.</p></div>
+      <div class="pillar-card"><div class="pnum">V</div><div class="picon">🌿</div><h3 class="ptitle">Culture &amp; Heritage</h3><p class="pdesc">Preserving and celebrating the rich traditions, arts, language, and customs of our community.</p></div>
+      <div class="pillar-card"><div class="pnum">VI</div><div class="picon">🌟</div><h3 class="ptitle">Leadership &amp; Legacy</h3><p class="pdesc">Cultivating leaders of character who carry the Chamber's mission forward for generations to come.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPS -->
+<section id="apps">
+  <div class="sec-pad">
+    <div class="section-header reveal">
+      <span class="eyebrow">Digital Presence</span>
+      <h2 class="sec-title">Chamber Apps</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-sub">Our suite of community apps — launching soon. Check back for updates from Muppuri Venkata Suresh.</p>
+    </div>
+    <div class="apps-grid reveal">
+      <div class="app-card"><div class="app-soon">Coming Soon</div><div class="app-icon">📱</div><div class="app-name">Muppuri Connect</div><p class="app-desc">The official community networking app — connect with members, discover events, and stay informed across all districts.</p><span class="app-badge">Member Network</span></div>
+      <div class="app-card"><div class="app-soon">Coming Soon</div><div class="app-icon">🏪</div><div class="app-name">Chamber Bazaar</div><p class="app-desc">A digital marketplace exclusively for Thogata Veera Kshatriya businesses — buy, sell, and trade within the community.</p><span class="app-badge">Commerce</span></div>
+      <div class="app-card"><div class="app-soon">Coming Soon</div><div class="app-icon">🎓</div><div class="app-name">Veera Scholar</div><p class="app-desc">Scholarship applications, educational resources, and mentorship matching for students of the community.</p><span class="app-badge">Education</span></div>
+      <div class="app-card"><div class="app-soon">Coming Soon</div><div class="app-icon">📰</div><div class="app-name">Chamber Digest</div><p class="app-desc">News, announcements, cultural updates, and community bulletins delivered directly to your device.</p><span class="app-badge">News &amp; Media</span></div>
+      <div class="app-card"><div class="app-soon">Coming Soon</div><div class="app-icon">⚖️</div><div class="app-name">Advocate Direct</div><p class="app-desc">Submit community issues, track advocacy cases, and receive legal guidance through the Chamber's network.</p><span class="app-badge">Advocacy</span></div>
+      <div class="app-card"><div class="app-soon">Coming Soon</div><div class="app-icon">🗓️</div><div class="app-name">Veera Events</div><p class="app-desc">Discover, register, and manage cultural programmes, gatherings, and Chamber events across Andhra Pradesh.</p><span class="app-badge">Events</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section id="books">
+  <div class="sec-pad books-bg">
+    <div class="section-header reveal">
+      <span class="eyebrow">Knowledge &amp; Wisdom</span>
+      <h2 class="sec-title">Chamber Library</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-sub">Books, publications and resources curated by Muppuri Venkata Suresh — more titles being added soon.</p>
+    </div>
+    <div class="books-grid reveal">
+      <div class="book-card">
+        <div class="book-cover"><div class="book-icon">📖</div><div class="book-cover-title">Thogata Veera Kshatriya — Our History</div></div>
+        <div class="book-info"><div class="book-title">History of Our People</div><div class="book-author">Muppuri Venkata Suresh</div><span class="book-badge">Coming Soon</span></div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover"><div class="book-icon">📜</div><div class="book-cover-title">Community Leadership Principles</div></div>
+        <div class="book-info"><div class="book-title">Leadership Principles</div><div class="book-author">Muppuri Chamber</div><span class="book-badge">Coming Soon</span></div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover"><div class="book-icon">🏛️</div><div class="book-cover-title">Commerce &amp; Culture of Andhra</div></div>
+        <div class="book-info"><div class="book-title">Commerce &amp; Culture</div><div class="book-author">Muppuri Chamber</div><span class="book-badge">Coming Soon</span></div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover"><div class="book-icon">⭐</div><div class="book-cover-title">Warrior Values for Modern Times</div></div>
+        <div class="book-info"><div class="book-title">Warrior Values</div><div class="book-author">Muppuri Venkata Suresh</div><span class="book-badge">Coming Soon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HERITAGE -->
+<section id="heritage">
+  <div class="sec-pad reveal">
+    <div class="heritage-inner">
+      <div class="section-header">
+        <span class="eyebrow">Words of the Chamber</span>
+        <h2 class="sec-title">Our Creed</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <blockquote class="hquote">A warrior's greatest honour is not in victory on the battlefield, but in the prosperity and dignity he bestows upon his people for generations to come.</blockquote>
+      <p class="hattr">— Muppuri Venkata Suresh, Founder</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section id="membership">
+  <div class="sec-pad">
+    <div class="section-header reveal">
+      <span class="eyebrow">Join the Chamber</span>
+      <h2 class="sec-title">Membership</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="mem-grid reveal">
+      <div class="mem-card">
+        <span class="mtier">Tier I</span>
+        <div class="mtitle">Associate Member</div>
+        <ul class="mfeatures">
+          <li>Community Directory Access</li><li>Monthly Newsletter</li><li>Annual Gathering Invite</li><li>Chamber Certification</li>
+        </ul>
+        <a href="#contact" class="btn-outline" style="font-size:0.66rem">Apply Now</a>
+      </div>
+      <div class="mem-card feat">
+        <span class="mtier">Tier II</span>
+        <div class="mtitle">Full Member</div>
+        <ul class="mfeatures">
+          <li>All Associate Benefits</li><li>Business Networking Events</li><li>Scholarship Access</li><li>Advocacy Support</li><li>Voting Rights</li>
+        </ul>
+        <a href="#contact" class="btn-gold" style="font-size:0.66rem">Apply Now</a>
+      </div>
+      <div class="mem-card">
+        <span class="mtier">Tier III</span>
+        <div class="mtitle">Patron Member</div>
+        <ul class="mfeatures">
+          <li>All Full Member Benefits</li><li>Leadership Council Access</li><li>Priority Representation</li><li>Legacy Programme</li><li>Honour Recognition</li>
+        </ul>
+        <a href="#contact" class="btn-outline" style="font-size:0.66rem">Apply Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section id="donate">
+  <div class="sec-pad donate-bg">
+    <div class="section-header reveal">
+      <span class="eyebrow">Support the Mission</span>
+      <h2 class="sec-title">Make a Donation</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-sub">Your generosity funds scholarships, community advocacy, cultural programmes, and the future of our people. Every contribution matters.</p>
+    </div>
+    <div class="donate-inner reveal">
+      <div class="donate-cards">
+        <div class="damt sel" onclick="selAmt(this,'500')"><div class="amt">₹500</div><div class="alabel">Supporter</div></div>
+        <div class="damt" onclick="selAmt(this,'1000')"><div class="amt">₹1,000</div><div class="alabel">Patron</div></div>
+        <div class="damt" onclick="selAmt(this,'2500')"><div class="amt">₹2,500</div><div class="alabel">Benefactor</div></div>
+        <div class="damt" onclick="selAmt(this,'5000')"><div class="amt">₹5,000</div><div class="alabel">Champion</div></div>
+        <div class="damt" onclick="selAmt(this,'10000')"><div class="amt">₹10,000</div><div class="alabel">Guardian</div></div>
+        <div class="damt" onclick="selAmt(this,'custom')"><div class="amt">Custom</div><div class="alabel">Your Amount</div></div>
+      </div>
+      <div class="dcustom" id="dc">
+        <input type="number" id="ca" placeholder="Enter amount in INR (e.g. 750)" min="1" oninput="document.getElementById('pa').value=this.value||'100'">
+      </div>
+      <div class="paypal-center">
+        <form action="https://www.paypal.com/donate" method="post" target="_blank" style="display:inline-block">
+          <input type="hidden" name="business" value="muppurichamber@gmail.com">
+          <input type="hidden" name="no_recurring" value="0">
+          <input type="hidden" name="item_name" value="Muppuri Chamber Donation — Community Support Fund">
+          <input type="hidden" name="currency_code" value="INR">
+          <input type="hidden" name="amount" id="pa" value="500">
+          <button type="submit" class="btn-paypal" style="font-size:0.82rem;padding:17px 52px;border:none">💛 &nbsp;Donate Now via PayPal</button>
+        </form>
+        <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px;flex-wrap:wrap">
+          <div class="pp-badge">Pay<span class="pal">Pal</span></div>
+          <div class="ssl-note">🔒 &nbsp;256-bit SSL Secured</div>
+        </div>
+        <p class="pp-note">Donations processed securely via PayPal · muppurichamber@gmail.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-pad">
+    <div class="contact-inner">
+      <div class="section-header reveal">
+        <span class="eyebrow">Reach Us</span>
+        <h2 class="sec-title">Contact the Chamber</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="ci-row reveal">
+        <div class="ci-card">
+          <div class="ci-icon">📞</div>
+          <span class="ci-label">Phone</span>
+          <div class="ci-val"><a href="tel:+918247630459">+91 82476 30459</a></div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-icon">✉️</div>
+          <span class="ci-label">Email</span>
+          <div class="ci-val"><a href="mailto:muppurichamber@gmail.com">muppurichamber@gmail.com</a></div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-icon">📍</div>
+          <span class="ci-label">Location</span>
+          <div class="ci-val">Andhra Pradesh, India</div>
+        </div>
+      </div>
+      <div class="form-grid reveal">
+        <div class="fg"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
+        <div class="fg"><label>Mobile Number</label><input type="tel" placeholder="+91 82476 30459"></div>
+        <div class="fg"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
+        <div class="fg">
+          <label>District</label>
+          <select>
+            <option value="">Select District</option>
+            <option>Guntur</option><option>Krishna</option><option>West Godavari</option>
+            <option>East Godavari</option><option>Visakhapatnam</option><option>Kurnool</option><option>Other</option>
+          </select>
+        </div>
+        <div class="fg full">
+          <label>Purpose of Enquiry</label>
+          <select>
+            <option>Membership Application</option><option>Business Partnership</option><option>Community Issue</option>
+            <option>Cultural Programme</option><option>Scholarship Enquiry</option><option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="fg full"><label>Message</label><textarea placeholder="Write your message here..."></textarea></div>
+        <div class="full" style="text-align:center;margin-top:10px">
+          <a href="mailto:muppurichamber@gmail.com" class="btn-gold">Send Enquiry</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="rgba(201,168,76,0.82)" stroke="#C9A84C" stroke-width="0.6">
+          <ellipse cx="16" cy="50" rx="7" ry="13" transform="rotate(-18 16 50)"/>
+          <ellipse cx="10" cy="34" rx="5.5" ry="9" transform="rotate(-36 10 34)"/>
+          <ellipse cx="84" cy="50" rx="7" ry="13" transform="rotate(18 84 50)"/>
+          <ellipse cx="90" cy="34" rx="5.5" ry="9" transform="rotate(36 90 34)"/>
+        </g>
+        <path d="M32 18 L68 18 L74 73 L50 88 L26 73 Z" fill="#0A0A0A" stroke="#C9A84C" stroke-width="1.8"/>
+        <path d="M36 23 L64 23 L69 71 L50 83 L31 71 Z" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.8"/>
+        <polygon points="50,30 54,44 68,44 57,53 61,67 50,58 39,67 43,53 32,44 46,44" fill="#C9A84C" stroke="#FFD700" stroke-width="0.7"/>
+      </svg>
+      <div>
+        <span class="f-logo">Muppuri Chamber</span>
+        <span class="f-sub">Thogata Veera Kshatriya · Andhra Pradesh · India</span>
+      </div>
+    </div>
+    <div class="fnav">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#pillars">Pillars</a></li>
+        <li><a href="#apps">Apps</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#membership">Membership</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fcontact">
+      <h4 style="font-family:'Cinzel',serif;font-size:0.57rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:14px">Contact</h4>
+      <p>📞 <a href="tel:+918247630459">+91 82476 30459</a></p>
+      <p>✉️ <a href="mailto:muppurichamber@gmail.com">muppurichamber@gmail.com</a></p>
+      <p style="margin-top:14px">💛 Donations via PayPal</p>
+      <p><a href="mailto:muppurichamber@gmail.com" style="color:#555;font-size:0.83rem">muppurichamber@gmail.com</a></p>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2025 <span>Muppuri Chamber</span>. All rights reserved. Founded by <span>Muppuri Venkata Suresh</span>.
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cur'),curT=document.getElementById('curT');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';setTimeout(()=>{curT.style.left=e.clientX+'px';curT.style.top=e.clientY+'px';},80);});
+
+// Particles
+const pc=document.getElementById('particles');
+for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';p.style.cssText=`left:${Math.random()*100}%;animation-duration:${9+Math.random()*13}s;animation-delay:${Math.random()*10}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px;`;pc.appendChild(p);}
+
+// Mobile menu
+function toggleMenu(){document.getElementById('mMenu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mMenu').classList.remove('open');}
+
+// Scroll reveal
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');e.target.querySelectorAll('.pillar-card,.mem-card,.app-card,.book-card,.damt,.ci-card').forEach((c,i)=>{c.style.transitionDelay=(i*0.07)+'s';c.style.opacity='1';c.style.transform='translateY(0)';});}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(r=>ro.observe(r));
+
+// Counters
+function animC(el,t){let c=0;const inc=t/60;const tm=setInterval(()=>{c=Math.min(c+inc,t);el.textContent=Math.floor(c)+(t>=100?'+':'');if(c>=t)clearInterval(tm);},26);}
+const so=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.querySelectorAll('.stat-number').forEach(n=>animC(n,parseInt(n.dataset.target)));so.unobserve(en.target);}});},{threshold:0.5});
+document.querySelectorAll('.stats-band').forEach(s=>so.observe(s));
+
+// Init card states
+document.querySelectorAll('.pillar-card,.mem-card,.app-card,.book-card,.damt,.ci-card').forEach(c=>{c.style.opacity='0';c.style.transform='translateY(20px)';c.style.transition='opacity 0.5s ease,transform 0.5s ease,border-color 0.4s,box-shadow 0.4s,transform 0.4s';});
+
+// Donation selector
+function selAmt(el,val){document.querySelectorAll('.damt').forEach(d=>d.classList.remove('sel'));el.classList.add('sel');const dc=document.getElementById('dc');if(val==='custom'){dc.style.display='flex';document.getElementById('pa').value='100';}else{dc.style.display='none';document.getElementById('pa').value=val;}}
+</script>
+</body>
+</html>
